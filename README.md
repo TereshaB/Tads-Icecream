@@ -10,5 +10,11 @@
 
 ## light mode:-
 
-![Uploading image.png…]()
+<img width="1391" height="852" alt="image" src="https://github.com/user-attachments/assets/c7f1ec44-e3f6-4a77-9326-2e172ff6d34f" />
+
+# comparision sliders
+
+<img width="1391" height="852" alt="image" src="https://github.com/user-attachments/assets/3b9d0345-d50b-48ed-a38e-9c60474c299f" />
+
+
 
