@@ -1,671 +1,1381 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tad's Ice Cream | Indulge Without Guilt</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body data-flavour="berry" data-theme="dark">
-  <div class="noise-overlay"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tad's Ice Cream | Indulge Without Guilt</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/css/styles.css" />
+    </head>
+    <body data-flavour="chocolate" data-theme="dark">
+        <div class="noise-overlay"></div>
 
-  <!-- Navigation -->
-  <nav class="site-nav fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-[var(--border)]">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="font-display text-2xl font-bold tracking-tight" aria-label="Tad's Ice Cream Home">
-        Tad's
-      </a>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#flavours" class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Flavours</a>
-        <a href="#pricing" class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Pricing</a>
-        <a href="#nutrition" class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Nutrition</a>
-        <a href="#faq" class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">FAQ</a>
-        <a href="#contact" class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Contact</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <button
-          class="theme-toggle"
-          id="theme-toggle"
-          type="button"
-          aria-label="Switch to light mode"
-          aria-pressed="false"
+        <!-- Navigation -->
+        <nav
+            class="site-nav fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-[var(--border)]"
         >
-          <span class="theme-toggle-track">
-            <span class="theme-toggle-thumb"></span>
-          </span>
-          <span class="theme-toggle-label" id="theme-toggle-label">Dark</span>
-        </button>
-        <button class="btn-primary text-sm py-2 px-6">Order Now</button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-    <div class="gradient-blob w-[600px] h-[600px] -top-40 -right-40 bg-[var(--accent)]" style="opacity: 0.15;"></div>
-    <div class="gradient-blob w-[400px] h-[400px] bottom-20 -left-20 bg-[var(--accent)]" style="opacity: 0.1;"></div>
-    
-    <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
-      <div class="reveal">
-        <span class="inline-block px-4 py-2 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] text-sm font-medium mb-6">
-          High Protein · Natural Ingredients
-        </span>
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] mb-6">
-          Indulge<br>
-          <span class="text-[var(--accent)]">Without</span><br>
-          Guilt
-        </h1>
-        <p class="text-xl text-[var(--fg-muted)] max-w-md mb-8 leading-relaxed">
-          Healthy fats, balanced carbs, high protein, and natural ingredients. Finally, ice cream that loves you back.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <button class="btn-primary">Order Now</button>
-          <a href="#flavours" class="btn-secondary">Explore Flavours</a>
-        </div>
-      </div>
-      
-      <div class="reveal reveal-delay-2 relative">
-        <div class="aspect-square max-w-lg mx-auto relative">
-          <!-- Product image placeholder with gradient -->
-          <div class="absolute inset-0 rounded-[40px] bg-gradient-to-br from-[var(--accent-soft)] to-transparent"></div>
-          <div class="hero-showcase absolute inset-8 rounded-[32px] backdrop-blur-sm flex items-center justify-center hero-product-frame">
-            <div class="text-center">
-              <img
-                src="assets/images/tub.jpg"
-                alt="Tad's Ice Cream tub"
-                class="hero-product-image mx-auto mb-4"
-                id="hero-product"
-              >
-              <p class="text-[var(--fg-muted)] text-sm">Creamy. Dreamy. Healthy.</p>
-            </div>
-          </div>
-          <!-- Floating badges -->
-          <div class="absolute -right-4 top-1/4 bg-[var(--card)] border border-[var(--border)] rounded-2xl px-4 py-3 reveal reveal-delay-3">
-            <p class="text-2xl font-bold text-[var(--accent)]">20g</p>
-            <p class="text-xs text-[var(--fg-muted)]">Protein</p>
-          </div>
-          <div class="absolute -left-4 bottom-1/4 bg-[var(--card)] border border-[var(--border)] rounded-2xl px-4 py-3 reveal reveal-delay-4">
-            <p class="text-2xl font-bold text-[var(--accent)]">150</p>
-            <p class="text-xs text-[var(--fg-muted)]">Calories</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Tad's Section -->
-  <section class="py-24 relative" id="why">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Why Tad's</h2>
-        <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">We set out to create ice cream that's actually good for you. No compromises.</p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="reveal reveal-delay-1 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group">
-          <div class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <svg class="w-7 h-7 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">High Protein</h3>
-          <p class="text-[var(--fg-muted)]">20g of protein per serving to fuel your body and satisfy your cravings.</p>
-        </div>
-        
-        <div class="reveal reveal-delay-2 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group">
-          <div class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <svg class="w-7 h-7 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Natural Ingredients</h3>
-          <p class="text-[var(--fg-muted)]">Real vanilla, fresh cream, and natural sweeteners. Nothing artificial.</p>
-        </div>
-        
-        <div class="reveal reveal-delay-3 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group">
-          <div class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <svg class="w-7 h-7 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Balanced Macros</h3>
-          <p class="text-[var(--fg-muted)]">The perfect ratio of protein, healthy fats, and complex carbs.</p>
-        </div>
-        
-        <div class="reveal reveal-delay-4 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group">
-          <div class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <svg class="w-7 h-7 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Real Ice Cream Taste</h3>
-          <p class="text-[var(--fg-muted)]">Creamy, rich, and satisfying. Zero compromise on taste.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Flavours Section -->
-  <section class="py-24 relative" id="flavours">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Choose Your Flavour</h2>
-        <p class="text-[var(--fg-muted)] text-lg">Two delicious options, same incredible nutrition.</p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-        <!-- Berry Card -->
-        <div class="flavour-card active" data-colour="berry" onclick="selectFlavour('berry')" role="button" tabindex="0" aria-pressed="true">
-          <div class="relative z-10">
-            <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#e85a7c]/30 to-[#a855f7]/20 mb-6 flex items-center justify-center overflow-hidden">
-              <div class="w-24 h-36 rounded-xl bg-gradient-to-b from-[#e85a7c] to-[#d64d6e] shadow-2xl transform hover:scale-105 transition-transform"></div>
-            </div>
-            <h3 class="text-2xl font-bold mb-2">Berry Bliss</h3>
-            <p class="text-[var(--fg-muted)] mb-4">Sweet strawberries, tart raspberries, and creamy vanilla undertones.</p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm">Strawberry</span>
-              <span class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm">Raspberry</span>
-              <span class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm">Vanilla</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Chocolate Card -->
-        <div class="flavour-card" data-colour="chocolate" onclick="selectFlavour('chocolate')" role="button" tabindex="0" aria-pressed="false">
-          <div class="relative z-10">
-            <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#c4815a]/30 to-[#8B4513]/20 mb-6 flex items-center justify-center overflow-hidden">
-              <div class="w-24 h-36 rounded-xl bg-gradient-to-b from-[#c4815a] to-[#a06b3d] shadow-2xl transform hover:scale-105 transition-transform"></div>
-            </div>
-            <h3 class="text-2xl font-bold mb-2">Dark Chocolate</h3>
-            <p class="text-[var(--fg-muted)] mb-4">Rich cocoa, velvety smooth texture, and a hint of sea salt.</p>
-            <div class="flex gap-2 flex-wrap">
-              <span class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm">Cocoa</span>
-              <span class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm">Sea Salt</span>
-              <span class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm">Cream</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Product Configurator -->
-      <div class="reveal max-w-2xl mx-auto bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-          <div>
-            <h3 class="text-xl font-bold mb-1" id="product-name">Berry Bliss</h3>
-            <p class="text-[var(--fg-muted)]" id="product-desc">Single-serve cup pricing for plastic or paper packaging.</p>
-          </div>
-          <div class="size-toggle" role="radiogroup" aria-label="Select size">
-            <button class="size-btn active" onclick="selectSize('small')" role="radio" aria-checked="true">120 ml</button>
-            <button class="size-btn" onclick="selectSize('large')" role="radio" aria-checked="false">1 L tub</button>
-          </div>
-        </div>
-        
-        <div class="grid grid-cols-3 gap-6 mb-8 text-center">
-          <div>
-            <p class="text-3xl font-bold text-[var(--accent)]" id="product-price">NPR 6 - 14</p>
-            <p class="text-sm text-[var(--fg-muted)]">Packaging Cost</p>
-          </div>
-          <div>
-            <p class="text-3xl font-bold" id="product-calories">150</p>
-            <p class="text-sm text-[var(--fg-muted)]">Calories</p>
-          </div>
-          <div>
-            <p class="text-3xl font-bold" id="product-protein">20g</p>
-            <p class="text-sm text-[var(--fg-muted)]">Protein</p>
-          </div>
-        </div>
-
-        <p class="text-sm text-[var(--fg-muted)] mb-8">
-          Pricing shown in NPR and based on your selected cup or tub format.
-        </p>
-        
-        <button class="btn-primary w-full text-lg" id="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-24 relative" id="pricing">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Packaging Pricing</h2>
-        <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">
-          Packaging cost guidance for Tad's Ice Cream in Pokhara, Nepal.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-8">
-        <article class="packaging-card reveal reveal-delay-1">
-          <div class="flex items-start justify-between gap-4 mb-6">
-            <div>
-              <p class="text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-2">Single Serve</p>
-              <h3 class="text-2xl font-bold">100 ml Cups</h3>
-            </div>
-            <span class="px-4 py-2 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] text-sm font-medium">
-              Quick treat
-            </span>
-          </div>
-
-          <div class="pricing-row">
-            <div>
-              <p class="font-semibold">Plastic cup + lid</p>
-              <p class="text-sm text-[var(--fg-muted)]">Cheapest option</p>
-            </div>
-            <p class="font-semibold text-[var(--accent)]">NPR 6 - 10</p>
-          </div>
-
-          <div class="pricing-row">
-            <div>
-              <p class="font-semibold">Paper cup + lid</p>
-              <p class="text-sm text-[var(--fg-muted)]">Premium paper packaging</p>
-            </div>
-            <p class="font-semibold text-[var(--accent)]">NPR 8 - 14</p>
-          </div>
-
-          <div class="mt-6 rounded-2xl bg-[var(--bg-elevated)] p-4 text-sm text-[var(--fg-muted)]">
-            Difference: <span class="text-[var(--fg)] font-medium">NPR 2 - 4 per cup</span>
-          </div>
-        </article>
-
-        <article class="packaging-card reveal reveal-delay-2">
-          <div class="flex items-start justify-between gap-4 mb-6">
-            <div>
-              <p class="text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-2">Family Pack</p>
-              <h3 class="text-2xl font-bold">1 Liter Containers</h3>
-            </div>
-            <span class="px-4 py-2 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] text-sm font-medium">
-              Better value
-            </span>
-          </div>
-
-          <div class="pricing-row">
-            <div>
-              <p class="font-semibold">Plastic container + lid</p>
-              <p class="text-sm text-[var(--fg-muted)]">Durable and cost-effective</p>
-            </div>
-            <p class="font-semibold text-[var(--accent)]">NPR 35 - 60</p>
-          </div>
-
-          <div class="pricing-row">
-            <div>
-              <p class="font-semibold">Paper tub + lid</p>
-              <p class="text-sm text-[var(--fg-muted)]">Eco-forward packaging</p>
-            </div>
-            <p class="font-semibold text-[var(--accent)]">NPR 45 - 80</p>
-          </div>
-
-          <div class="mt-6 rounded-2xl bg-[var(--bg-elevated)] p-4 text-sm text-[var(--fg-muted)]">
-            Difference: <span class="text-[var(--fg)] font-medium">NPR 10 - 20 per tub</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Nutrition Comparison Section -->
-  <section class="py-24 relative" id="nutrition">
-    <div class="gradient-blob w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--accent)]" style="opacity: 0.08;"></div>
-    
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Nutrition That Speaks</h2>
-        <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">See exactly what you're getting. Compare our macros to regular ice cream.</p>
-      </div>
-      
-      <div class="reveal max-w-3xl mx-auto">
-        <div class="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 mb-8">
-          <div class="flex justify-between items-center mb-8">
-            <h3 class="text-xl font-bold">Per Serving (120ml)</h3>
-            <label class="flex items-center gap-3 cursor-pointer">
-              <span class="text-[var(--fg-muted)]">Compare to regular</span>
-              <div class="relative">
-                <input type="checkbox" id="compare-toggle" class="sr-only" onchange="toggleComparison()">
-                <div class="w-14 h-8 bg-[var(--bg-elevated)] rounded-full transition-colors" id="toggle-track"></div>
-                <div class="absolute top-1 left-1 w-6 h-6 bg-[var(--fg-muted)] rounded-full transition-all" id="toggle-thumb"></div>
-              </div>
-            </label>
-          </div>
-          
-          <!-- Nutrition Bars -->
-          <div class="space-y-6" id="nutrition-bars">
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Carbohydrates</span>
-                <span class="text-[var(--fg-muted)]" id="carbs-value">12g</span>
-              </div>
-              <div class="nutrition-bar">
-                <div class="nutrition-fill bg-[var(--accent)]" id="carbs-bar" style="width: 24%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Protein</span>
-                <span class="text-[var(--fg-muted)]" id="protein-value">20g</span>
-              </div>
-              <div class="nutrition-bar">
-                <div class="nutrition-fill bg-emerald-500" id="protein-bar" style="width: 80%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Fat</span>
-                <span class="text-[var(--fg-muted)]" id="fat-value">6g</span>
-              </div>
-              <div class="nutrition-bar">
-                <div class="nutrition-fill bg-amber-500" id="fat-bar" style="width: 18%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Sugar</span>
-                <span class="text-[var(--fg-muted)]" id="sugar-value">4g</span>
-              </div>
-              <div class="nutrition-bar">
-                <div class="nutrition-fill bg-rose-500" id="sugar-bar" style="width: 8%;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-4 text-center">
-          <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
-            <p class="text-4xl font-bold text-[var(--accent)] mb-1">150</p>
-            <p class="text-[var(--fg-muted)]">Calories</p>
-          </div>
-          <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
-            <p class="text-4xl font-bold text-emerald-500 mb-1">4g</p>
-            <p class="text-[var(--fg-muted)]">Sugar</p>
-          </div>
-          <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6">
-            <p class="text-4xl font-bold text-amber-500 mb-1">3g</p>
-            <p class="text-[var(--fg-muted)]">Net Carbs</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ingredient Reveal Section -->
-  <section class="py-24 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">See the Difference</h2>
-        <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">Drag to compare what goes into regular ice cream versus Tad's.</p>
-      </div>
-      
-      <div class="reveal max-w-4xl mx-auto">
-        <div class="comparison-slider" id="comparison-slider">
-          <div class="comparison-side comparison-right">
-            <h3 class="font-display text-3xl font-bold mb-4 text-[var(--accent)]">Tad's Ice Cream</h3>
-            <div class="space-y-3 text-left max-w-sm">
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                  </svg>
+            <div
+                class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+            >
+                <a href="#" class="nav-logo-link" aria-label="Tad's Ice Cream Home">
+                    <img
+                        src="assets/images/tad's icecream - logo.svg"
+                        alt="Tad's Ice Cream logo"
+                        class="nav-logo"
+                    />
+                    <span class="font-display nav-wordmark">Tad's</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a
+                        href="#flavours"
+                        class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
+                        >Flavours</a
+                    >
+                    <a
+                        href="#pricing"
+                        class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
+                        >Pricing</a
+                    >
+                    <a
+                        href="#nutrition"
+                        class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
+                        >Nutrition</a
+                    >
+                    <a
+                        href="#faq"
+                        class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
+                        >FAQ</a
+                    >
+                    <a
+                        href="#contact"
+                        class="text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
+                        >Contact</a
+                    >
                 </div>
-                <span>Fresh cream & milk</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                  </svg>
+                <div class="flex items-center gap-3">
+                    <button
+                        class="theme-toggle"
+                        id="theme-toggle"
+                        type="button"
+                        aria-label="Switch to light mode"
+                        aria-pressed="false"
+                    >
+                        <span class="theme-toggle-track">
+                            <span class="theme-toggle-thumb"></span>
+                        </span>
+                        <span class="theme-toggle-label" id="theme-toggle-label"
+                            >Dark</span
+                        >
+                    </button>
+                    <button class="btn-primary text-sm py-2 px-6">
+                        Order Now
+                    </button>
                 </div>
-                <span>Whey protein isolate</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                  </svg>
-                </div>
-                <span>Natural sweeteners</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                  </svg>
-                </div>
-                <span>Real fruit & vanilla</span>
-              </div>
             </div>
-            <p class="mt-6 text-[var(--fg-muted)]">20g protein · 150 cal · 4g sugar</p>
-          </div>
-          
-          <div class="comparison-side comparison-left" id="comparison-left">
-            <h3 class="font-display text-3xl font-bold mb-4 text-rose-400">Regular Ice Cream</h3>
-            <div class="space-y-3 text-left max-w-sm">
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-                </div>
-                <span>High fructose corn syrup</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-                </div>
-                <span>Artificial flavors</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-                </div>
-                <span>Preservatives & gums</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-                </div>
-                <span>Minimal protein</span>
-              </div>
-            </div>
-            <p class="mt-6 text-[var(--fg-muted)]">2g protein · 280 cal · 24g sugar</p>
-          </div>
-          
-          <div class="comparison-handle" id="comparison-handle"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </nav>
 
-  <!-- Social Proof Section -->
-  <section class="py-24 relative">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">What People Say</h2>
-        <p class="text-[var(--fg-muted)] text-lg">Real feedback from real customers.</p>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="reveal reveal-delay-1 testimonial-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent)]/60 flex items-center justify-center font-bold">
-              JM
-            </div>
-            <div>
-              <p class="font-medium">Jake M.</p>
-              <p class="text-sm text-[var(--fg-muted)]">Fitness Enthusiast</p>
-            </div>
-          </div>
-          <p class="text-[var(--fg-muted)]">"Can't believe this is healthy. I've tried every protein ice cream out there and Tad's is the first one that actually tastes like the real thing."</p>
-        </div>
-        
-        <div class="reveal reveal-delay-2 testimonial-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-500/60 flex items-center justify-center font-bold text-black">
-              SL
-            </div>
-            <div>
-              <p class="font-medium">Sarah L.</p>
-              <p class="text-sm text-[var(--fg-muted)]">Mom of 2</p>
-            </div>
-          </div>
-          <p class="text-[var(--fg-muted)]">"Tastes like real ice cream! My kids love it and I feel good knowing they're getting protein instead of just sugar."</p>
-        </div>
-        
-        <div class="reveal reveal-delay-3 testimonial-card">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-amber-500/60 flex items-center justify-center font-bold text-black">
-              RK
-            </div>
-            <div>
-              <p class="font-medium">Ryan K.</p>
-              <p class="text-sm text-[var(--fg-muted)]">Marathon Runner</p>
-            </div>
-          </div>
-          <p class="text-[var(--fg-muted)]">"Finally a high-protein dessert I'd buy again. Perfect post-run recovery that doesn't feel like a compromise."</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Hero Section -->
+        <section
+            class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+        >
+            <div
+                class="gradient-blob w-[600px] h-[600px] -top-40 -right-40 bg-[var(--accent)]"
+                style="opacity: 0.15"
+            ></div>
+            <div
+                class="gradient-blob w-[400px] h-[400px] bottom-20 -left-20 bg-[var(--accent)]"
+                style="opacity: 0.1"
+            ></div>
 
-  <!-- FAQ Section -->
-  <section class="py-24 relative" id="faq">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Questions? Answers.</h2>
-        <p class="text-[var(--fg-muted)] text-lg">Everything you need to know about Tad's.</p>
-      </div>
-      
-      <div class="reveal" id="faq-container">
-        <div class="faq-item" data-faq>
-          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-            <span>Is Tad's actually healthy?</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </button>
-          <div class="faq-answer text-[var(--fg-muted)]">
-            Yes! Tad's is made with real ingredients you can pronounce. We use whey protein isolate, natural sweeteners, and fresh cream. Each serving has 20g protein, only 4g sugar, and 150 calories. It's designed to fit into a healthy, active lifestyle.
-          </div>
-        </div>
-        
-        <div class="faq-item" data-faq>
-          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-            <span>Is it low sugar?</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </button>
-          <div class="faq-answer text-[var(--fg-muted)]">
-            Absolutely. Each serving contains just 4g of sugar, compared to 24g+ in regular ice cream. We use natural sweeteners like monk fruit and erythritol that don't spike blood sugar.
-          </div>
-        </div>
-        
-        <div class="faq-item" data-faq>
-          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-            <span>How much protein is in each serving?</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </button>
-          <div class="faq-answer text-[var(--fg-muted)]">
-            Each 120ml serving contains 20g of high-quality whey protein isolate. The 1L tub has approximately 167g of protein total — perfect for sharing or multiple servings.
-          </div>
-        </div>
-        
-        <div class="faq-item" data-faq>
-          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-            <span>Does it taste artificial?</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </button>
-          <div class="faq-answer text-[var(--fg-muted)]">
-            Not at all! We've spent years perfecting our recipes to deliver authentic ice cream taste. We use real vanilla beans, actual fruit, and premium cocoa. No artificial aftertaste — just creamy, delicious ice cream.
-          </div>
-        </div>
-        
-        <div class="faq-item" data-faq>
-          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-            <span>Is Tad's suitable for kids, gym-goers, and families?</span>
-            <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </button>
-          <div class="faq-answer text-[var(--fg-muted)]">
-            Yes to all three! Kids love the taste (without the sugar crash), it's perfect post-workout for gym-goers, and families enjoy it as a healthier dessert option. It's ice cream everyone can feel good about eating.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div
+                class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center"
+            >
+                <div class="reveal">
+                    <span
+                        class="inline-block px-4 py-2 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] text-sm font-medium mb-6"
+                    >
+                        High Protein · Natural Ingredients
+                    </span>
+                    <h1
+                        class="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] mb-6"
+                    >
+                        Indulge<br />
+                        <span class="text-[var(--accent)]">Without</span><br />
+                        Guilt
+                    </h1>
+                    <p
+                        class="text-xl text-[var(--fg-muted)] max-w-md mb-8 leading-relaxed"
+                    >
+                        Healthy fats, balanced carbs, high protein, and natural
+                        ingredients. Finally, ice cream that loves you back.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn-primary">Order Now</button>
+                        <a href="#flavours" class="btn-secondary"
+                            >Explore Flavours</a
+                        >
+                    </div>
+                </div>
 
-  <!-- Contact / Footer -->
-  <footer class="py-16 border-t border-[var(--border)]" id="contact">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid md:grid-cols-4 gap-12 mb-12">
-        <div>
-          <h3 class="font-display text-2xl font-bold mb-4">Tad's</h3>
-          <p class="text-[var(--fg-muted)]">Ice cream that loves you back. High protein, low sugar, incredible taste.</p>
-        </div>
-        
-        <div>
-          <h4 class="font-semibold mb-4">Navigate</h4>
-          <ul class="space-y-2 text-[var(--fg-muted)]">
-            <li><a href="#flavours" class="hover:text-[var(--accent)] transition-colors">Flavours</a></li>
-            <li><a href="#pricing" class="hover:text-[var(--accent)] transition-colors">Pricing</a></li>
-            <li><a href="#nutrition" class="hover:text-[var(--accent)] transition-colors">Nutrition</a></li>
-            <li><a href="#faq" class="hover:text-[var(--accent)] transition-colors">FAQ</a></li>
-            <li><a href="#contact" class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="font-semibold mb-4">Connect</h4>
-          <ul class="space-y-2 text-[var(--fg-muted)]">
-            <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Instagram</a></li>
-            <li><a href="#" class="hover:text-[var(--accent)] transition-colors">Twitter</a></li>
-            <li><a href="#" class="hover:text-[var(--accent)] transition-colors">TikTok</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="font-semibold mb-4">Contact</h4>
-          <ul class="space-y-2 text-[var(--fg-muted)]">
-            <li>hello@tadsicecream.com</li>
-            <li>Pokhara, Nepal</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4 text-[var(--fg-muted)] text-sm">
-        <p>© 2024 Tad's Ice Cream. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="#" class="hover:text-[var(--accent)] transition-colors">Privacy</a>
-          <a href="#" class="hover:text-[var(--accent)] transition-colors">Terms</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+                <div class="reveal reveal-delay-2 relative">
+                    <div class="aspect-square max-w-lg mx-auto relative">
+                        <!-- Product image placeholder with gradient -->
+                        <div
+                            class="absolute inset-0 rounded-[40px] bg-gradient-to-br from-[var(--accent-soft)] to-transparent"
+                        ></div>
+                        <div
+                            class="hero-showcase absolute inset-8 rounded-[32px] backdrop-blur-sm flex items-center justify-center hero-product-frame"
+                        >
+                            <div class="text-center">
+                                <img
+                                    src="assets/images/chocolate.png"
+                                    alt="Dark Chocolate ice cream"
+                                    class="hero-product-image mx-auto mb-4"
+                                    id="hero-product"
+                                />
+                                <p class="text-[var(--fg-muted)] text-sm">
+                                    Creamy. Dreamy. Healthy.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Floating badges -->
+                        <div
+                            class="absolute -right-4 top-1/4 bg-[var(--card)] border border-[var(--border)] rounded-2xl px-4 py-3 reveal reveal-delay-3"
+                        >
+                            <p class="text-2xl font-bold text-[var(--accent)]">
+                                20g
+                            </p>
+                            <p class="text-xs text-[var(--fg-muted)]">
+                                Protein
+                            </p>
+                        </div>
+                        <div
+                            class="absolute -left-4 bottom-1/4 bg-[var(--card)] border border-[var(--border)] rounded-2xl px-4 py-3 reveal reveal-delay-4"
+                        >
+                            <p class="text-2xl font-bold text-[var(--accent)]">
+                                150
+                            </p>
+                            <p class="text-xs text-[var(--fg-muted)]">
+                                Calories
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Sticky CTA -->
-  <div class="sticky-cta" id="sticky-cta">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
-      <div>
-        <p class="font-bold" id="sticky-product">Berry Bliss - 120 ml</p>
-        <p class="text-[var(--fg-muted)] text-sm" id="sticky-price">NPR 6 - 14</p>
-      </div>
-      <button class="btn-primary">Add to Cart</button>
-    </div>
-  </div>
-  <script src="assets/js/main.js"></script>
-</body>
+        <!-- Why Tad's Section -->
+        <section class="py-24 relative" id="why">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        Why Tad's
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">
+                        We set out to create ice cream that's actually good for
+                        you. No compromises.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="reveal reveal-delay-1 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group"
+                    >
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+                        >
+                            <svg
+                                class="w-7 h-7 text-[var(--accent)]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">High Protein</h3>
+                        <p class="text-[var(--fg-muted)]">
+                            20g of protein per serving to fuel your body and
+                            satisfy your cravings.
+                        </p>
+                    </div>
+
+                    <div
+                        class="reveal reveal-delay-2 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group"
+                    >
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+                        >
+                            <svg
+                                class="w-7 h-7 text-[var(--accent)]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">
+                            Natural Ingredients
+                        </h3>
+                        <p class="text-[var(--fg-muted)]">
+                            Real vanilla, fresh cream, and natural sweeteners.
+                            Nothing artificial.
+                        </p>
+                    </div>
+
+                    <div
+                        class="reveal reveal-delay-3 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group"
+                    >
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+                        >
+                            <svg
+                                class="w-7 h-7 text-[var(--accent)]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Balanced Macros</h3>
+                        <p class="text-[var(--fg-muted)]">
+                            The perfect ratio of protein, healthy fats, and
+                            complex carbs.
+                        </p>
+                    </div>
+
+                    <div
+                        class="reveal reveal-delay-4 bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 hover:border-[var(--accent)] transition-all group"
+                    >
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-[var(--accent-soft)] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+                        >
+                            <svg
+                                class="w-7 h-7 text-[var(--accent)]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">
+                            Real Ice Cream Taste
+                        </h3>
+                        <p class="text-[var(--fg-muted)]">
+                            Creamy, rich, and satisfying. Zero compromise on
+                            taste.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flavours Section -->
+        <section class="py-24 relative" id="flavours">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        Choose Your Flavour
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg">
+                        Two delicious options, same incredible nutrition.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+                    <!-- Berry Card -->
+                    <div
+                        class="flavour-card"
+                        data-colour="berry"
+                        onclick="selectFlavour('berry')"
+                        role="button"
+                        tabindex="0"
+                        aria-pressed="false"
+                    >
+                        <div class="relative z-10">
+                            <div
+                                class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#e85a7c]/30 to-[#a855f7]/20 mb-6 flex items-center justify-center overflow-hidden"
+                            >
+                                <img
+                                    src="assets/images/3.svg"
+                                    alt="Berry Bliss tub"
+                                    class="flavour-preview-image"
+                                />
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Berry Bliss</h3>
+                            <p class="text-[var(--fg-muted)] mb-4">
+                                Sweet strawberries, tart raspberries, and creamy
+                                vanilla undertones.
+                            </p>
+                            <div class="flex gap-2 flex-wrap">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm"
+                                    >Strawberry</span
+                                >
+                                <span
+                                    class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm"
+                                    >Raspberry</span
+                                >
+                                <span
+                                    class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm"
+                                    >Vanilla</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chocolate Card -->
+                    <div
+                        class="flavour-card active"
+                        data-colour="chocolate"
+                        onclick="selectFlavour('chocolate')"
+                        role="button"
+                        tabindex="0"
+                        aria-pressed="true"
+                    >
+                        <div class="relative z-10">
+                            <div
+                                class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#c4815a]/30 to-[#8B4513]/20 mb-6 flex items-center justify-center overflow-hidden"
+                            >
+                                <img
+                                    src="assets/images/4.svg"
+                                    alt="Dark Chocolate tub"
+                                    class="flavour-preview-image"
+                                />
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">
+                                Dark Chocolate
+                            </h3>
+                            <p class="text-[var(--fg-muted)] mb-4">
+                                Rich cocoa, velvety smooth texture, and a hint
+                                of sea salt.
+                            </p>
+                            <div class="flex gap-2 flex-wrap">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm"
+                                    >Cocoa</span
+                                >
+                                <span
+                                    class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm"
+                                    >Sea Salt</span
+                                >
+                                <span
+                                    class="px-3 py-1 rounded-full bg-[var(--bg)] text-sm"
+                                    >Cream</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Configurator -->
+                <div
+                    class="reveal max-w-2xl mx-auto bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8"
+                >
+                    <div
+                        class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8"
+                    >
+                        <div>
+                            <h3
+                                class="text-xl font-bold mb-1"
+                                id="product-name"
+                            >
+                                Berry Bliss
+                            </h3>
+                            <p class="text-[var(--fg-muted)]" id="product-desc">
+                                Single-serve cup pricing for plastic or paper
+                                packaging.
+                            </p>
+                        </div>
+                        <div
+                            class="size-toggle"
+                            role="radiogroup"
+                            aria-label="Select size"
+                        >
+                            <button
+                                class="size-btn active"
+                                onclick="selectSize('small')"
+                                role="radio"
+                                aria-checked="true"
+                            >
+                                120 ml
+                            </button>
+                            <button
+                                class="size-btn"
+                                onclick="selectSize('large')"
+                                role="radio"
+                                aria-checked="false"
+                            >
+                                1 L tub
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 mb-8 text-center">
+                        <div>
+                            <p
+                                class="text-3xl font-bold text-[var(--accent)]"
+                                id="product-price"
+                            >
+                                NPR 6 - 14
+                            </p>
+                            <p class="text-sm text-[var(--fg-muted)]">
+                                Packaging Cost
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold" id="product-calories">
+                                150
+                            </p>
+                            <p class="text-sm text-[var(--fg-muted)]">
+                                Calories
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold" id="product-protein">
+                                20g
+                            </p>
+                            <p class="text-sm text-[var(--fg-muted)]">
+                                Protein
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-[var(--fg-muted)] mb-8">
+                        Pricing shown in NPR and based on your selected cup or
+                        tub format.
+                    </p>
+
+                    <button class="btn-primary w-full text-lg" id="add-to-cart">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 relative" id="pricing">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        Packaging Pricing
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">
+                        Packaging cost guidance for Tad's Ice Cream in Pokhara,
+                        Nepal.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <article class="packaging-card reveal reveal-delay-1">
+                        <div
+                            class="flex items-start justify-between gap-4 mb-6"
+                        >
+                            <div>
+                                <p
+                                    class="text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-2"
+                                >
+                                    Single Serve
+                                </p>
+                                <h3 class="text-2xl font-bold">100 ml Cups</h3>
+                            </div>
+                            <span
+                                class="px-4 py-2 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] text-sm font-medium"
+                            >
+                                Quick treat
+                            </span>
+                        </div>
+
+                        <div class="pricing-row">
+                            <div>
+                                <p class="font-semibold">Plastic cup + lid</p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Cheapest option
+                                </p>
+                            </div>
+                            <p class="font-semibold text-[var(--accent)]">
+                                NPR 6 - 10
+                            </p>
+                        </div>
+
+                        <div class="pricing-row">
+                            <div>
+                                <p class="font-semibold">Paper cup + lid</p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Premium paper packaging
+                                </p>
+                            </div>
+                            <p class="font-semibold text-[var(--accent)]">
+                                NPR 8 - 14
+                            </p>
+                        </div>
+
+                        <div
+                            class="mt-6 rounded-2xl bg-[var(--bg-elevated)] p-4 text-sm text-[var(--fg-muted)]"
+                        >
+                            Difference:
+                            <span class="text-[var(--fg)] font-medium"
+                                >NPR 2 - 4 per cup</span
+                            >
+                        </div>
+                    </article>
+
+                    <article class="packaging-card reveal reveal-delay-2">
+                        <div
+                            class="flex items-start justify-between gap-4 mb-6"
+                        >
+                            <div>
+                                <p
+                                    class="text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-2"
+                                >
+                                    Family Pack
+                                </p>
+                                <h3 class="text-2xl font-bold">
+                                    1 Liter Containers
+                                </h3>
+                            </div>
+                            <span
+                                class="px-4 py-2 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] text-sm font-medium"
+                            >
+                                Better value
+                            </span>
+                        </div>
+
+                        <div class="pricing-row">
+                            <div>
+                                <p class="font-semibold">
+                                    Plastic container + lid
+                                </p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Durable and cost-effective
+                                </p>
+                            </div>
+                            <p class="font-semibold text-[var(--accent)]">
+                                NPR 35 - 60
+                            </p>
+                        </div>
+
+                        <div class="pricing-row">
+                            <div>
+                                <p class="font-semibold">Paper tub + lid</p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Eco-forward packaging
+                                </p>
+                            </div>
+                            <p class="font-semibold text-[var(--accent)]">
+                                NPR 45 - 80
+                            </p>
+                        </div>
+
+                        <div
+                            class="mt-6 rounded-2xl bg-[var(--bg-elevated)] p-4 text-sm text-[var(--fg-muted)]"
+                        >
+                            Difference:
+                            <span class="text-[var(--fg)] font-medium"
+                                >NPR 10 - 20 per tub</span
+                            >
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutrition Comparison Section -->
+        <section class="py-24 relative" id="nutrition">
+            <div
+                class="gradient-blob w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--accent)]"
+                style="opacity: 0.08"
+            ></div>
+
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        Nutrition That Speaks
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">
+                        See exactly what you're getting. Compare our macros to
+                        regular ice cream.
+                    </p>
+                </div>
+
+                <div class="reveal max-w-3xl mx-auto">
+                    <div
+                        class="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-8 mb-8"
+                    >
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-xl font-bold">
+                                Per Serving (120ml)
+                            </h3>
+                            <label
+                                class="flex items-center gap-3 cursor-pointer"
+                            >
+                                <span class="text-[var(--fg-muted)]"
+                                    >Compare to regular</span
+                                >
+                                <div class="relative">
+                                    <input
+                                        type="checkbox"
+                                        id="compare-toggle"
+                                        class="sr-only"
+                                        onchange="toggleComparison()"
+                                    />
+                                    <div
+                                        class="w-14 h-8 bg-[var(--bg-elevated)] rounded-full transition-colors"
+                                        id="toggle-track"
+                                    ></div>
+                                    <div
+                                        class="absolute top-1 left-1 w-6 h-6 bg-[var(--fg-muted)] rounded-full transition-all"
+                                        id="toggle-thumb"
+                                    ></div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Nutrition Bars -->
+                        <div class="space-y-6" id="nutrition-bars">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium"
+                                        >Carbohydrates</span
+                                    >
+                                    <span
+                                        class="text-[var(--fg-muted)]"
+                                        id="carbs-value"
+                                        >12g</span
+                                    >
+                                </div>
+                                <div class="nutrition-bar">
+                                    <div
+                                        class="nutrition-fill bg-[var(--accent)]"
+                                        id="carbs-bar"
+                                        style="width: 24%"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Protein</span>
+                                    <span
+                                        class="text-[var(--fg-muted)]"
+                                        id="protein-value"
+                                        >20g</span
+                                    >
+                                </div>
+                                <div class="nutrition-bar">
+                                    <div
+                                        class="nutrition-fill bg-emerald-500"
+                                        id="protein-bar"
+                                        style="width: 80%"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Fat</span>
+                                    <span
+                                        class="text-[var(--fg-muted)]"
+                                        id="fat-value"
+                                        >6g</span
+                                    >
+                                </div>
+                                <div class="nutrition-bar">
+                                    <div
+                                        class="nutrition-fill bg-amber-500"
+                                        id="fat-bar"
+                                        style="width: 18%"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium">Sugar</span>
+                                    <span
+                                        class="text-[var(--fg-muted)]"
+                                        id="sugar-value"
+                                        >4g</span
+                                    >
+                                </div>
+                                <div class="nutrition-bar">
+                                    <div
+                                        class="nutrition-fill bg-rose-500"
+                                        id="sugar-bar"
+                                        style="width: 8%"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4 text-center">
+                        <div
+                            class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6"
+                        >
+                            <p
+                                class="text-4xl font-bold text-[var(--accent)] mb-1"
+                            >
+                                150
+                            </p>
+                            <p class="text-[var(--fg-muted)]">Calories</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6"
+                        >
+                            <p class="text-4xl font-bold text-emerald-500 mb-1">
+                                4g
+                            </p>
+                            <p class="text-[var(--fg-muted)]">Sugar</p>
+                        </div>
+                        <div
+                            class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6"
+                        >
+                            <p class="text-4xl font-bold text-amber-500 mb-1">
+                                3g
+                            </p>
+                            <p class="text-[var(--fg-muted)]">Net Carbs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ingredient Reveal Section -->
+        <section class="py-24 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        See the Difference
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg max-w-2xl mx-auto">
+                        Drag to compare what goes into regular ice cream versus
+                        Tad's.
+                    </p>
+                </div>
+
+                <div class="reveal max-w-4xl mx-auto">
+                    <div class="comparison-slider" id="comparison-slider">
+                        <div class="comparison-side comparison-right">
+                            <h3
+                                class="font-display text-3xl font-bold mb-4 text-[var(--accent)]"
+                            >
+                                Tad's Ice Cream
+                            </h3>
+                            <div class="space-y-3 text-left max-w-sm">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-emerald-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 13l4 4L19 7"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Fresh cream & milk</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-emerald-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 13l4 4L19 7"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Whey protein isolate</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-emerald-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 13l4 4L19 7"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Natural sweeteners</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-emerald-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 13l4 4L19 7"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Real fruit & vanilla</span>
+                                </div>
+                            </div>
+                            <p class="mt-6 text-[var(--fg-muted)]">
+                                20g protein · 150 cal · 4g sugar
+                            </p>
+                        </div>
+
+                        <div
+                            class="comparison-side comparison-left"
+                            id="comparison-left"
+                        >
+                            <h3
+                                class="font-display text-3xl font-bold mb-4 text-rose-400"
+                            >
+                                Regular Ice Cream
+                            </h3>
+                            <div class="space-y-3 text-left max-w-sm">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-rose-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>High fructose corn syrup</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-rose-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Artificial flavors</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-rose-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Preservatives & gums</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center"
+                                    >
+                                        <svg
+                                            class="w-4 h-4 text-rose-500"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <span>Minimal protein</span>
+                                </div>
+                            </div>
+                            <p class="mt-6 text-[var(--fg-muted)]">
+                                2g protein · 280 cal · 24g sugar
+                            </p>
+                        </div>
+
+                        <div
+                            class="comparison-handle"
+                            id="comparison-handle"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="py-24 relative" id="reviews">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        What People Say
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg">
+                        Real feedback from real customers.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <div class="reveal reveal-delay-1 testimonial-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent)]/60 flex items-center justify-center font-bold"
+                            >
+                                JM
+                            </div>
+                            <div>
+                                <p class="font-medium">Jake M.</p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Fitness Enthusiast
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-[var(--fg-muted)]">
+                            "Can't believe this is healthy. I've tried every
+                            protein ice cream out there and Tad's is the first
+                            one that actually tastes like the real thing."
+                        </p>
+                    </div>
+
+                    <div class="reveal reveal-delay-2 testimonial-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-500/60 flex items-center justify-center font-bold text-black"
+                            >
+                                SL
+                            </div>
+                            <div>
+                                <p class="font-medium">Sarah L.</p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Mom of 2
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-[var(--fg-muted)]">
+                            "Tastes like real ice cream! My kids love it and I
+                            feel good knowing they're getting protein instead of
+                            just sugar."
+                        </p>
+                    </div>
+
+                    <div class="reveal reveal-delay-3 testimonial-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-amber-500/60 flex items-center justify-center font-bold text-black"
+                            >
+                                RK
+                            </div>
+                            <div>
+                                <p class="font-medium">Ryan K.</p>
+                                <p class="text-sm text-[var(--fg-muted)]">
+                                    Marathon Runner
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-[var(--fg-muted)]">
+                            "Finally a high-protein dessert I'd buy again.
+                            Perfect post-run recovery that doesn't feel like a
+                            compromise."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-24 relative" id="faq">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        Questions? Answers.
+                    </h2>
+                    <p class="text-[var(--fg-muted)] text-lg">
+                        Everything you need to know about Tad's.
+                    </p>
+                </div>
+
+                <div class="reveal" id="faq-container">
+                    <div class="faq-item" data-faq>
+                        <button
+                            class="faq-question"
+                            onclick="toggleFaq(this)"
+                            aria-expanded="false"
+                        >
+                            <span>Is Tad's actually healthy?</span>
+                            <svg
+                                class="faq-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                        </button>
+                        <div class="faq-answer text-[var(--fg-muted)]">
+                            Yes! Tad's is made with real ingredients you can
+                            pronounce. We use whey protein isolate, natural
+                            sweeteners, and fresh cream. Each serving has 20g
+                            protein, only 4g sugar, and 150 calories. It's
+                            designed to fit into a healthy, active lifestyle.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-faq>
+                        <button
+                            class="faq-question"
+                            onclick="toggleFaq(this)"
+                            aria-expanded="false"
+                        >
+                            <span>Is it low sugar?</span>
+                            <svg
+                                class="faq-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                        </button>
+                        <div class="faq-answer text-[var(--fg-muted)]">
+                            Absolutely. Each serving contains just 4g of sugar,
+                            compared to 24g+ in regular ice cream. We use
+                            natural sweeteners like monk fruit and erythritol
+                            that don't spike blood sugar.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-faq>
+                        <button
+                            class="faq-question"
+                            onclick="toggleFaq(this)"
+                            aria-expanded="false"
+                        >
+                            <span>How much protein is in each serving?</span>
+                            <svg
+                                class="faq-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                        </button>
+                        <div class="faq-answer text-[var(--fg-muted)]">
+                            Each 120ml serving contains 20g of high-quality whey
+                            protein isolate. The 1L tub has approximately 167g
+                            of protein total — perfect for sharing or multiple
+                            servings.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-faq>
+                        <button
+                            class="faq-question"
+                            onclick="toggleFaq(this)"
+                            aria-expanded="false"
+                        >
+                            <span>Does it taste artificial?</span>
+                            <svg
+                                class="faq-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                        </button>
+                        <div class="faq-answer text-[var(--fg-muted)]">
+                            Not at all! We've spent years perfecting our recipes
+                            to deliver authentic ice cream taste. We use real
+                            vanilla beans, actual fruit, and premium cocoa. No
+                            artificial aftertaste — just creamy, delicious ice
+                            cream.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-faq>
+                        <button
+                            class="faq-question"
+                            onclick="toggleFaq(this)"
+                            aria-expanded="false"
+                        >
+                            <span
+                                >Is Tad's suitable for kids, gym-goers, and
+                                families?</span
+                            >
+                            <svg
+                                class="faq-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                        </button>
+                        <div class="faq-answer text-[var(--fg-muted)]">
+                            Yes to all three! Kids love the taste (without the
+                            sugar crash), it's perfect post-workout for
+                            gym-goers, and families enjoy it as a healthier
+                            dessert option. It's ice cream everyone can feel
+                            good about eating.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact / Footer -->
+        <footer class="py-16 border-t border-[var(--border)]" id="contact">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-4 gap-12 mb-12">
+                    <div>
+                        <h3 class="mb-4">
+                            <span class="footer-brand-lockup">
+                                <img
+                                    src="assets/images/tad's icecream - logo.svg"
+                                    alt="Tad's Ice Cream logo"
+                                    class="footer-logo"
+                                />
+                                <span class="font-display footer-wordmark">Tad's</span>
+                            </span>
+                        </h3>
+                        <p class="text-[var(--fg-muted)]">
+                            Ice cream that loves you back. High protein, low
+                            sugar, incredible taste.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-4">Navigate</h4>
+                        <ul class="space-y-2 text-[var(--fg-muted)]">
+                            <li>
+                                <a
+                                    href="#flavours"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >Flavours</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#pricing"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >Pricing</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#nutrition"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >Nutrition</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#faq"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >FAQ</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#contact"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >Contact</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-4">Connect</h4>
+                        <ul class="space-y-2 text-[var(--fg-muted)]">
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >Instagram</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >Twitter</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="#"
+                                    class="hover:text-[var(--accent)] transition-colors"
+                                    >TikTok</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold mb-4">Contact</h4>
+                        <ul class="space-y-2 text-[var(--fg-muted)]">
+                            <li>hello@tadsicecream.com</li>
+                            <li>Pokhara, Nepal</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4 text-[var(--fg-muted)] text-sm"
+                >
+                    <p>© 2024 Tad's Ice Cream. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a
+                            href="#"
+                            class="hover:text-[var(--accent)] transition-colors"
+                            >Privacy</a
+                        >
+                        <a
+                            href="#"
+                            class="hover:text-[var(--accent)] transition-colors"
+                            >Terms</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Sticky CTA -->
+        <div class="sticky-cta" id="sticky-cta">
+            <div
+                class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap"
+            >
+                <div>
+                    <p class="font-bold" id="sticky-product">
+                        Dark Chocolate - 120 ml
+                    </p>
+                    <p class="text-[var(--fg-muted)] text-sm" id="sticky-price">
+                        NPR 6 - 14
+                    </p>
+                </div>
+                <button class="btn-primary">Add to Cart</button>
+            </div>
+        </div>
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>

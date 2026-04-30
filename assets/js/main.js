@@ -4,13 +4,17 @@ const products = {
       price: 'NPR 6 - 14',
       calories: '150',
       protein: '20g',
-      desc: 'Single-serve cup pricing for plastic or paper packaging.'
+      desc: 'Single-serve cup pricing for plastic or paper packaging.',
+      image: 'assets/images/Strawberry.png',
+      imageAlt: 'Berry Bliss ice cream'
     },
     large: {
       price: 'NPR 35 - 80',
       calories: '1,250',
       protein: '167g',
-      desc: '1 liter container pricing based on plastic or paper tubs.'
+      desc: '1 liter container pricing based on plastic or paper tubs.',
+      image: 'assets/images/Strawberry.png',
+      imageAlt: 'Berry Bliss ice cream'
     }
   },
   chocolate: {
@@ -18,13 +22,17 @@ const products = {
       price: 'NPR 6 - 14',
       calories: '160',
       protein: '20g',
-      desc: 'Single-serve cup pricing for plastic or paper packaging.'
+      desc: 'Single-serve cup pricing for plastic or paper packaging.',
+      image: 'assets/images/chocolate.png',
+      imageAlt: 'Dark Chocolate ice cream'
     },
     large: {
       price: 'NPR 35 - 80',
       calories: '1,330',
       protein: '167g',
-      desc: '1 liter container pricing based on plastic or paper tubs.'
+      desc: '1 liter container pricing based on plastic or paper tubs.',
+      image: 'assets/images/chocolate.png',
+      imageAlt: 'Dark Chocolate ice cream'
     }
   }
 };
@@ -34,7 +42,7 @@ const nutritionData = {
   regular: { carbs: 32, protein: 3, fat: 15, sugar: 24, carbsVal: '32g', proteinVal: '3g', fatVal: '15g', sugarVal: '24g' }
 };
 
-let currentFlavour = 'berry';
+let currentFlavour = 'chocolate';
 let currentSize = 'small';
 let isComparing = false;
 let currentTheme = 'dark';
@@ -112,6 +120,7 @@ function updateProductDisplay() {
   const product = products[currentFlavour][currentSize];
   const name = currentFlavour === 'berry' ? 'Berry Bliss' : 'Dark Chocolate';
   const sizeText = currentSize === 'small' ? '120 ml' : '1 L tub';
+  const heroProduct = document.getElementById('hero-product');
 
   document.getElementById('product-name').textContent = name;
   document.getElementById('product-desc').textContent = product.desc;
@@ -120,6 +129,11 @@ function updateProductDisplay() {
   document.getElementById('product-protein').textContent = product.protein;
   document.getElementById('sticky-product').textContent = `${name} - ${sizeText}`;
   document.getElementById('sticky-price').textContent = product.price;
+
+  if (heroProduct) {
+    heroProduct.src = product.image;
+    heroProduct.alt = product.imageAlt;
+  }
 }
 
 function toggleComparison() {
@@ -231,18 +245,38 @@ function initComparisonSlider() {
 function initStickyCTA() {
   const cta = document.getElementById('sticky-cta');
   const hero = document.querySelector('section');
+  const reviews = document.getElementById('reviews');
 
   if (!cta || !hero) {
     return;
   }
 
+  let heroOutOfView = false;
+  let reviewsInView = false;
+
+  const syncStickyCTA = () => {
+    cta.classList.toggle('visible', heroOutOfView && !reviewsInView);
+  };
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      cta.classList.toggle('visible', !entry.isIntersecting);
+      heroOutOfView = !entry.isIntersecting;
+      syncStickyCTA();
     });
   }, { threshold: 0 });
 
   observer.observe(hero);
+
+  if (reviews) {
+    const reviewsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        reviewsInView = entry.isIntersecting;
+        syncStickyCTA();
+      });
+    }, { threshold: 0.15 });
+
+    reviewsObserver.observe(reviews);
+  }
 }
 
 function initFlavourKeyboardSupport() {
