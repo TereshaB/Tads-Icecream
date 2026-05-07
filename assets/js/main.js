@@ -1,51 +1,71 @@
 const products = {
-  berry: {
+  banana: {
     small: {
-      price: 'NPR 6 - 14',
-      calories: '150',
-      protein: '20g',
-      desc: 'Single-serve cup pricing for plastic or paper packaging.',
-      image: 'assets/images/Strawberry.png',
-      imageAlt: 'Berry Bliss ice cream'
+      price: 'NPR 120',
+      statPrimary: 'Quick treat',
+      statSecondary: 'Single serve',
+      desc: 'Fresh banana flavour with a creamy base, built for easy single-serve enjoyment.',
+      image: 'assets/images/5.svg',
+      imageAlt: 'Banana flavour tub'
     },
     large: {
-      price: 'NPR 35 - 80',
-      calories: '1,250',
-      protein: '167g',
-      desc: '1 liter container pricing based on plastic or paper tubs.',
-      image: 'assets/images/Strawberry.png',
-      imageAlt: 'Berry Bliss ice cream'
+      price: 'NPR 750',
+      statPrimary: 'Family pack',
+      statSecondary: 'Better value',
+      desc: 'A bigger banana tub made for sharing, scooping, and keeping in the freezer for the week.',
+      image: 'assets/images/5.svg',
+      imageAlt: 'Banana flavour tub'
     }
   },
   chocolate: {
     small: {
-      price: 'NPR 6 - 14',
-      calories: '160',
-      protein: '20g',
-      desc: 'Single-serve cup pricing for plastic or paper packaging.',
-      image: 'assets/images/chocolate.png',
-      imageAlt: 'Dark Chocolate ice cream'
+      price: 'NPR 120',
+      statPrimary: 'Quick treat',
+      statSecondary: 'Single serve',
+      desc: 'Dark chocolate flavour with a rich, creamy finish and a smoother cocoa profile.',
+      image: 'assets/images/4.svg',
+      imageAlt: 'Dark Chocolate tub'
     },
     large: {
-      price: 'NPR 35 - 80',
-      calories: '1,330',
-      protein: '167g',
-      desc: '1 liter container pricing based on plastic or paper tubs.',
-      image: 'assets/images/chocolate.png',
-      imageAlt: 'Dark Chocolate ice cream'
+      price: 'NPR 750',
+      statPrimary: 'Family pack',
+      statSecondary: 'Better value',
+      desc: 'A full one-liter chocolate tub for families, gatherings, and serious dessert cravings.',
+      image: 'assets/images/4.svg',
+      imageAlt: 'Dark Chocolate tub'
     }
   }
 };
 
 const nutritionData = {
-  tads: { carbs: 12, protein: 20, fat: 6, sugar: 4, carbsVal: '12g', proteinVal: '20g', fatVal: '6g', sugarVal: '4g' },
-  regular: { carbs: 32, protein: 3, fat: 15, sugar: 24, carbsVal: '32g', proteinVal: '3g', fatVal: '15g', sugarVal: '24g' }
+  tads: {
+    carbs: 52,
+    protein: 74,
+    fat: 46,
+    sugar: 34,
+    carbsVal: 'Balanced',
+    proteinVal: 'Higher',
+    fatVal: 'Creamy',
+    sugarVal: 'Moderate'
+  },
+  regular: {
+    carbs: 80,
+    protein: 22,
+    fat: 70,
+    sugar: 88,
+    carbsVal: 'Higher',
+    proteinVal: 'Lower',
+    fatVal: 'Heavier',
+    sugarVal: 'Much Higher'
+  }
 };
 
 let currentFlavour = 'chocolate';
 let currentSize = 'small';
 let isComparing = false;
 let currentTheme = 'dark';
+let orderQuantity = 1;
+let selectedOrderFlavours = ['chocolate'];
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -54,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initComparisonSlider();
   initStickyCTA();
   initFlavourKeyboardSupport();
+  initPurchaseModal();
 });
 
 function initTheme() {
@@ -118,22 +139,166 @@ function selectSize(size) {
 
 function updateProductDisplay() {
   const product = products[currentFlavour][currentSize];
-  const name = currentFlavour === 'berry' ? 'Berry Bliss' : 'Dark Chocolate';
+  const name = currentFlavour === 'banana' ? 'Banana Cream' : 'Dark Chocolate';
   const sizeText = currentSize === 'small' ? '120 ml' : '1 L tub';
   const heroProduct = document.getElementById('hero-product');
 
   document.getElementById('product-name').textContent = name;
   document.getElementById('product-desc').textContent = product.desc;
   document.getElementById('product-price').textContent = product.price;
-  document.getElementById('product-calories').textContent = product.calories;
-  document.getElementById('product-protein').textContent = product.protein;
+  document.getElementById('product-stat-primary').textContent = product.statPrimary;
+  document.getElementById('product-stat-secondary').textContent = product.statSecondary;
   document.getElementById('sticky-product').textContent = `${name} - ${sizeText}`;
   document.getElementById('sticky-price').textContent = product.price;
+  document.getElementById('hero-highlight-value').textContent = currentFlavour === 'banana' ? 'Real Banana' : 'Dark Cocoa';
+  document.getElementById('hero-highlight-label').textContent = 'Signature Flavour';
+  document.getElementById('hero-support-value').textContent = currentSize === 'small' ? '120 ml' : '1 L';
+  document.getElementById('hero-support-label').textContent = 'Available Size';
 
   if (heroProduct) {
     heroProduct.src = product.image;
     heroProduct.alt = product.imageAlt;
   }
+}
+
+function initPurchaseModal() {
+  const modal = document.getElementById('purchase-modal');
+  const form = document.getElementById('purchase-form');
+  const success = document.getElementById('purchase-success');
+
+  document.querySelectorAll('.order-trigger').forEach((button) => {
+    button.addEventListener('click', openPurchaseModal);
+  });
+
+  document.querySelectorAll('[data-close-modal]').forEach((button) => {
+    button.addEventListener('click', closePurchaseModal);
+  });
+
+  if (modal) {
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closePurchaseModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal && modal.classList.contains('visible')) {
+      closePurchaseModal();
+    }
+  });
+
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const flavourLabel = formatSelectedFlavours();
+      const sizeLabel = currentSize === 'small' ? '120 ml' : '1 L tub';
+      document.getElementById('purchase-success-copy').textContent =
+        `Demo order created for ${orderQuantity} x ${flavourLabel} (${sizeLabel}).`;
+
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+    });
+  }
+
+  const quantityInput = document.getElementById('purchase-quantity');
+  if (quantityInput) {
+    quantityInput.addEventListener('input', (event) => {
+      orderQuantity = Number(event.target.value) || 1;
+      syncPurchaseSummary();
+    });
+  }
+
+  document.querySelectorAll('input[name="purchase-flavours"]').forEach((input) => {
+    input.addEventListener('change', updateSelectedOrderFlavours);
+  });
+}
+
+function openPurchaseModal() {
+  const modal = document.getElementById('purchase-modal');
+  const form = document.getElementById('purchase-form');
+  const success = document.getElementById('purchase-success');
+  const quantityField = document.getElementById('purchase-quantity');
+
+  if (!modal || !form || !success) {
+    return;
+  }
+
+  selectedOrderFlavours = [currentFlavour];
+  syncPurchaseFlavourInputs();
+  if (quantityField) {
+    quantityField.value = String(orderQuantity);
+  }
+  syncPurchaseSummary();
+
+  form.classList.remove('hidden');
+  success.classList.add('hidden');
+  modal.classList.add('visible');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+}
+
+function closePurchaseModal() {
+  const modal = document.getElementById('purchase-modal');
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.remove('visible');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
+function updateSelectedOrderFlavours() {
+  const checked = Array.from(document.querySelectorAll('input[name="purchase-flavours"]:checked'))
+    .map((input) => input.value);
+
+  selectedOrderFlavours = checked.length ? checked : [currentFlavour];
+  syncPurchaseFlavourInputs();
+  syncPurchaseSummary();
+}
+
+function syncPurchaseFlavourInputs() {
+  document.querySelectorAll('input[name="purchase-flavours"]').forEach((input) => {
+    input.checked = selectedOrderFlavours.includes(input.value);
+  });
+}
+
+function syncPurchaseSummary() {
+  const summaryField = document.getElementById('purchase-summary');
+  const summaryCount = document.getElementById('purchase-summary-count');
+  const sizeField = document.getElementById('purchase-size');
+  const priceField = document.getElementById('purchase-summary-price');
+  const flavourPreview = document.getElementById('purchase-flavour-preview');
+  const sizeLabel = currentSize === 'small' ? '120 ml' : '1 L tub';
+  const flavourLabel = formatSelectedFlavours();
+
+  if (summaryField) {
+    summaryField.textContent = `${flavourLabel} · ${sizeLabel}`;
+  }
+
+  if (summaryCount) {
+    summaryCount.textContent = `${orderQuantity} item${orderQuantity > 1 ? 's' : ''}`;
+  }
+
+  if (sizeField) {
+    sizeField.value = sizeLabel;
+  }
+
+  if (priceField) {
+    priceField.textContent = currentSize === 'small' ? 'NPR 6 - 14 each' : 'NPR 35 - 80 each';
+  }
+
+  if (flavourPreview) {
+    flavourPreview.value = flavourLabel;
+  }
+}
+
+function formatSelectedFlavours() {
+  return selectedOrderFlavours
+    .map((flavour) => (flavour === 'banana' ? 'Banana Cream' : 'Dark Chocolate'))
+    .join(' + ');
 }
 
 function toggleComparison() {
@@ -153,15 +318,16 @@ function toggleComparison() {
     track.style.background = 'var(--bg-elevated)';
   }
 
-  document.getElementById('carbs-bar').style.width = `${data.carbs * 2}%`;
-  document.getElementById('protein-bar').style.width = `${data.protein * 4}%`;
-  document.getElementById('fat-bar').style.width = `${data.fat * 3}%`;
-  document.getElementById('sugar-bar').style.width = `${data.sugar * 2}%`;
+  document.getElementById('carbs-bar').style.width = `${data.carbs}%`;
+  document.getElementById('protein-bar').style.width = `${data.protein}%`;
+  document.getElementById('fat-bar').style.width = `${data.fat}%`;
+  document.getElementById('sugar-bar').style.width = `${data.sugar}%`;
 
   document.getElementById('carbs-value').textContent = data.carbsVal;
   document.getElementById('protein-value').textContent = data.proteinVal;
   document.getElementById('fat-value').textContent = data.fatVal;
   document.getElementById('sugar-value').textContent = data.sugarVal;
+  document.getElementById('economics-mode-label').textContent = isComparing ? 'Compared to regular ice cream' : 'Tad’s Ice Cream profile';
 }
 
 function toggleFaq(button) {
@@ -245,17 +411,17 @@ function initComparisonSlider() {
 function initStickyCTA() {
   const cta = document.getElementById('sticky-cta');
   const hero = document.querySelector('section');
-  const reviews = document.getElementById('reviews');
+  const faq = document.getElementById('faq');
 
   if (!cta || !hero) {
     return;
   }
 
   let heroOutOfView = false;
-  let reviewsInView = false;
+  let faqInView = false;
 
   const syncStickyCTA = () => {
-    cta.classList.toggle('visible', heroOutOfView && !reviewsInView);
+    cta.classList.toggle('visible', heroOutOfView && !faqInView);
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -267,15 +433,15 @@ function initStickyCTA() {
 
   observer.observe(hero);
 
-  if (reviews) {
-    const reviewsObserver = new IntersectionObserver((entries) => {
+  if (faq) {
+    const faqObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        reviewsInView = entry.isIntersecting;
+        faqInView = entry.isIntersecting;
         syncStickyCTA();
       });
     }, { threshold: 0.15 });
 
-    reviewsObserver.observe(reviews);
+    faqObserver.observe(faq);
   }
 }
 
