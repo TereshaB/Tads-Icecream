@@ -312,7 +312,7 @@ function syncPurchaseSummary() {
 
     if (priceField) {
         priceField.textContent =
-            currentSize === "small" ? "NPR 6 - 14 each" : "NPR 35 - 80 each";
+            currentSize === "small" ? "NPR ? each" : "NPR ? each";
     }
 
     if (flavourPreview) {
