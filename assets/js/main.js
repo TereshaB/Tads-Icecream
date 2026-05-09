@@ -150,25 +150,26 @@ function updateProductDisplay() {
         currentFlavour === "banana" ? "Banana Cream" : "Dark Chocolate";
     const sizeText = currentSize === "small" ? "120 ml" : "1 L tub";
     const heroProduct = document.getElementById("hero-product");
+    const setText = (id, value) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = value;
+        }
+    };
 
-    document.getElementById("product-name").textContent = name;
-    document.getElementById("product-desc").textContent = product.desc;
-    document.getElementById("product-price").textContent = product.price;
-    document.getElementById("product-stat-primary").textContent =
-        product.statPrimary;
-    document.getElementById("product-stat-secondary").textContent =
-        product.statSecondary;
-    document.getElementById("sticky-product").textContent =
-        `${name} - ${sizeText}`;
-    document.getElementById("sticky-price").textContent = product.price;
-    document.getElementById("hero-highlight-value").textContent =
-        currentFlavour === "banana" ? "Real Banana" : "Dark Cocoa";
-    document.getElementById("hero-highlight-label").textContent =
-        "Signature Flavour";
-    document.getElementById("hero-support-value").textContent =
-        currentSize === "small" ? "120 ml" : "1 L";
-    document.getElementById("hero-support-label").textContent =
-        "Available Size";
+    setText("product-name", name);
+    setText("product-desc", product.desc);
+    setText("product-price", product.price);
+    setText("product-stat-primary", product.statPrimary);
+    setText("product-stat-secondary", product.statSecondary);
+    setText("sticky-product", `${name} - ${sizeText}`);
+    setText(
+        "hero-highlight-value",
+        currentFlavour === "banana" ? "Real Banana" : "Dark Cocoa",
+    );
+    setText("hero-highlight-label", "Signature Flavour");
+    setText("hero-support-value", currentSize === "small" ? "120 ml" : "1 L");
+    setText("hero-support-label", "Available Size");
 
     if (heroProduct) {
         heroProduct.src = product.image;
